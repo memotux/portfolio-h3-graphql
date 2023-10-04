@@ -17,6 +17,7 @@ const typeDefs = `#graphql
   type Query {
     countAuthors: Int!
     allAuthors: [Author]!
+    findAuthor(firstName: String!): Author
   }
 `
 
@@ -24,6 +25,7 @@ const resolvers = {
   Query: {
     countAuthors: () => authors.length,
     allAuthors: () => authors,
+    findAuthor: (_, args) => authors.find((a) => a.firstName === args.firstName),
   },
 }
 
