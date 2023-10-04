@@ -6,6 +6,7 @@ const typeDefs = `#graphql
     id: ID!
     firstName: String!
     lastName: String!
+    fullName: String!
   }
   type Post {
     id: ID!
@@ -26,6 +27,9 @@ const resolvers = {
     countAuthors: () => authors.length,
     allAuthors: () => authors,
     findAuthor: (_, args) => authors.find((a) => a.firstName === args.firstName),
+  },
+  Author: {
+    fullName: (root) => `${root.firstName} ${root.lastName}`,
   },
 }
 
